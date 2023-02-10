@@ -31,6 +31,12 @@ while True:
         # Send post request
         response = requests.post(endpoint, json=payload, headers=headers)
 
+        # Simple error
+        if response.status_code != 200:
+            print("An error occurred while generating a response from the model.")
+            print(response.text)
+            break
+
         # Print response
         answer = response.json()["choices"][0]["text"]
         print(answer)
